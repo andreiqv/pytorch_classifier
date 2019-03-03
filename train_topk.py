@@ -203,8 +203,8 @@ criterion = nn.CrossEntropyLoss()
 
 # Observe that all parameters are being optimized
 #optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.0005, momentum=0.9)
-#optimizer_ft = optim.Adam(model_ft.parameters(), lr=0.001)
-optimizer_ft = optim.Adagrad(model_ft.parameters(), lr=0.001)
+optimizer_ft = optim.Adam(model_ft.parameters(), lr=0.005)
+#optimizer_ft = optim.Adagrad(model_ft.parameters(), lr=0.001)
 
 
 # Decay LR by a factor of 0.1 every 7 epochs
