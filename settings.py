@@ -2,7 +2,7 @@
 import os
 
 if os.path.exists('.local'):
-	data_dir = '/w/WORK/ineru/06_scales/_dataset/splited/'
+	data_dir = '/mnt/lin2/datasets/splited/'
 	batch_size = 4
 	num_workers = 4
 	topk = 2
@@ -13,7 +13,7 @@ if os.path.exists('.local'):
 
 else:
 	#data_dir = '/home/andrei/Data/Datasets/Scales/splited/'
-	data_dir = '/home/andrei/Data/Datasets/Scales/splited_shuffle_[16,3,1]/'	
+	data_dir = '/home/andrei/work/t7/splited/'
 	batch_size = 32
 	num_workers = 8	
 

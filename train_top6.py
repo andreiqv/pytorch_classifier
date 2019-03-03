@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.optim import lr_scheduler
-from torch.utils.data import DataLoader, random_split
+#from torch.utils.data import DataLoader, random_split
 import torchvision
 from torchvision import datasets, models, transforms
 from torchvision.datasets import ImageFolder
@@ -170,7 +170,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
 
 
-#model_ft = models.resnet18(pretrained=True)
+model_ft = models.resnet18(pretrained=True)
 #model_ft = models.resnet152(pretrained=True)  # Epoch 14 [valid]: loss=0.9544, acc=0.7135, top1=0.7119, top6=0.9606
 
 num_ftrs = model_ft.fc.in_features
