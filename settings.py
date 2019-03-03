@@ -16,6 +16,6 @@ else:
 	batch_size = 32
 	num_workers = 8	
 
-	SHOW_BAR = True
+	SHOW_BAR = False
 	DEBUG = False
 	TOPk = 3
