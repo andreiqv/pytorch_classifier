@@ -3,8 +3,8 @@ import sys
 import random
 
 if os.path.exists('.local'):
-	src_dir = '/w/WORK/ineru/06_scales/_dataset/copy/'
-	dst_dir = '/w/WORK/ineru/06_scales/_dataset/splited/'
+	src_dir = '/mnt/lin2/datasets/train/'
+	dst_dir = '/mnt/lin2/datasets/splited/'
 else:
 	src_dir = '/home/andrei/work/t7/dataset/train/'
 	dst_dir = '/home/andrei/work/t7/splited/'
@@ -23,8 +23,10 @@ def copy_files_to_subdirs(src_dir, dst_dir, parts, ratio=[1,1,1]):
 
 	subdirs = os.listdir(src_dir)
 	for class_name in subdirs:
-		subdir = src_dir + '/' + class_name
-		if not os.path.isdir(subdir): continue
+
+		subdir = os.path.join(src_dir, class_name)
+		if not os.path.isdir(subdir): 
+			continue
 
 		file_names = os.listdir(subdir)
 		if len(file_names) == 0: 
