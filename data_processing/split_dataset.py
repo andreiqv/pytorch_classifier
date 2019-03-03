@@ -6,8 +6,8 @@ if os.path.exists('.local'):
 	src_dir = '/w/WORK/ineru/06_scales/_dataset/copy/'
 	dst_dir = '/w/WORK/ineru/06_scales/_dataset/splited/'
 else:
-	src_dir = '~/work/t7/dataset/train'
-	dst_dir = '~/work/t7/splited/'
+	src_dir = '/home/andrei/work/t7/dataset/train/'
+	dst_dir = '/home/andrei/work/t7/splited/'
 
 parts = ['train', 'valid', 'test']
 
