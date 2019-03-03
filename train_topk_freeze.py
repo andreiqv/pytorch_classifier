@@ -189,14 +189,36 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
 
 #model_ft = models.resnet18(pretrained=True)
-#model_ft = models.resnet50(pretrained=True)
-#model_ft = models.resnet101(pretrained=True)
-#model_ft = models.resnet152(pretrained=True)
-model_ft = models.alexnet(pretrained=True)
-
-
+model_ft = models.resnet50(pretrained=False)
+#model_ft = models.resnet152(pretrained=True)  # Epoch 14 [valid]: loss=0.9544, acc=0.7135, top1=0.7119, top6=0.9606
 #model_ft = models.inception_v3(pretrained=True)
-#model_ft.aux_logits=False
+
+"""
+ct = 0
+for child in model_ft.children():
+	ct += 1
+	if ct < 7:
+		for param in child.parameters():
+			param.requires_grad = False
+"""
+
+freeze = False
+
+num_frozen_layers = 0
+i = 0
+for name, child in model_ft.named_children():
+	print("{}: {}".format(i, name), end='')
+	if i < num_frozen_layers:
+		for name2, params in child.named_parameters():
+			params.requires_grad = False
+		print(' - frozen')
+	else:
+		print()
+	i += 1
+
+print('Total num of layers:', i)
+print('Num of training layers:', i - num_frozen_layers)
+
 
 num_ftrs = model_ft.fc.in_features
 model_ft.fc = nn.Linear(num_ftrs, num_classes)
@@ -209,7 +231,12 @@ criterion = nn.CrossEntropyLoss()
 # Observe that all parameters are being optimized
 #optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.0005, momentum=0.9)
 #optimizer_ft = optim.Adam(model_ft.parameters(), lr=0.001)
-optimizer_ft = optim.Adagrad(model_ft.parameters(), lr=0.0005)
+
+#optimizer_ft = optim.SGD(list(filter(
+#	lambda p: p.requires_grad, model_ft.parameters())), lr=0.001, momentum=0.9)
+
+optimizer_ft = optim.Adam(list(filter(
+	lambda p: p.requires_grad, model_ft.parameters())), lr=0.001)
 
 
 # Decay LR by a factor of 0.1 every 7 epochs
