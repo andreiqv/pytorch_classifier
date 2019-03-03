@@ -5,10 +5,9 @@ if os.path.exists('.local'):
 	data_dir = '/mnt/lin2/datasets/splited/'
 	batch_size = 4
 	num_workers = 4
-	topk = 2
 
 	SHOW_BAR = False
-	DEBUG = True
+	DEBUG = False
 	TOPk = 3
 
 else:
@@ -19,4 +18,4 @@ else:
 
 	SHOW_BAR = True
 	DEBUG = False
-	TOPk = 6
+	TOPk = 3
