@@ -219,6 +219,10 @@ for name, child in model_ft.named_children():
 print('Total num of layers:', i)
 print('Num of training layers:', i - num_frozen_layers)
 
+from torchsummary import summary
+summary(model_ft, input_size=(3, 224, 224))
+
+#---
 
 num_ftrs = model_ft.fc.in_features
 model_ft.fc = nn.Linear(num_ftrs, num_classes)
