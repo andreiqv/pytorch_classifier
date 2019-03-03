@@ -34,7 +34,7 @@ data_transforms = {
 		transforms.RandomResizedCrop(IMAGE_WIDTH),
 		transforms.RandomHorizontalFlip(),
 
-		transforms.Pad(padding=60,padding_mode='reflect'),
+		transforms.Pad(padding=60, padding_mode='reflect'),
 		transforms.RandomRotation([0,90], expand=True),
 		#transforms.RandomResizedCrop(IMAGE_WIDTH),
 		transforms.CenterCrop(IMAGE_WIDTH),

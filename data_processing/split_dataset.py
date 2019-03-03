@@ -70,5 +70,5 @@ def copy_files_to_subdirs(src_dir, dst_dir, parts, ratio=[1,1,1]):
 
 if __name__ == '__main__':
 
-	copy_files_to_subdirs(src_dir, dst_dir, parts, ratio=[8,2,0])
+	copy_files_to_subdirs(src_dir, dst_dir, parts, ratio=[7,3,0])
 
