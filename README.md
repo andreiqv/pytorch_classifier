@@ -1,2 +1,2 @@
-# pytorch_classifier
-pytorch_classifier
+# pytorch slassifier
+Image classifier based on PyTorch framework
