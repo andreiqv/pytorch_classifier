@@ -64,10 +64,16 @@ print('valid_num_batch:', num_batch['valid'])
 
 
 def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
+
 	since = time.time()
 
 	best_model_wts = copy.deepcopy(model.state_dict())
 	best_acc = 0.0
+
+	fp = open('_out.txt', 'wt')
+	fp.write('epoch,valid_acc\n')
+
+	acc1_by_epoch = {'train':[], 'valid':[]}
 
 	for epoch in range(num_epochs):
 		print('------------')
@@ -134,9 +140,9 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 				acck_list.append(acck)
 				
 				if not SHOW_BAR:
-					print('epoch {} [{}] {:02d}/{}'.format(epoch, phase, i_batch, num_batch[phase]), end='')
 					#print('preds: ', preds)
 					#print('labels:', labels.data)
+					print('epoch {} [{}], batch {:02d}/{}'.format(epoch, phase, i_batch, num_batch[phase]), end='')
 					print(' - match {}/{}'.format( 
 						int(torch.sum(preds == labels.data)), settings.batch_size))
 					#print('top1={:.4f}, top{}={:.4f}'.format(acc1, TOPk, acck))
@@ -150,17 +156,26 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 			epoch_acc = running_corrects.double() / dataset_sizes[phase]
 			epoch_acc1 = np.mean(acc1_list)
 			epoch_acck = np.mean(acck_list)
-
+			acc1_by_epoch[phase].append(epoch_acc1)
+			
 			print('Epoch {} [{}]: loss={:.4f}, acc={:.4f}, top1={:.4f}, top{}={:.4f}' .
 				format(epoch, phase, epoch_loss, epoch_acc, epoch_acc1, TOPk, epoch_acck))
+
+			# log to file
+			if phase == 'valid':
+				fp.write('{},{:.4f}\n'.format(epoch, epoch_acc1))
+				fp.flush()
 
 			# deep copy the model
 			if phase == 'valid' and epoch_acc > best_acc:
 				best_acc = epoch_acc
 				best_model_wts = copy.deepcopy(model.state_dict())
 
+		
 		print()
 
+	fp.close()
+	
 	time_elapsed = time.time() - since
 	print('Training complete in {:.0f}m {:.0f}s'.format(
 		time_elapsed // 60, time_elapsed % 60))
@@ -168,6 +183,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
 	# load best model weights
 	model.load_state_dict(best_model_wts)
+	
 	return model
 
 
@@ -190,7 +206,7 @@ optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.0005, momentum=0.9)
 exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 
 model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
-	num_epochs=30)	
+	num_epochs=settings.num_epochs)	
 
 # save model
 
