@@ -26,8 +26,8 @@ import copy
 
 import settings
 
-IMAGE_WIDTH = 224
-#IMAGE_WIDTH = 299 # for inception-v3
+#IMAGE_WIDTH = 224
+IMAGE_WIDTH = 299 # for inception-v3
 
 
 data_transforms = {
