@@ -16,7 +16,7 @@ else:
 	#data_dir = '/home/andrei/Data/Datasets/Scales/splited/'
 	
 	data_dir = '/home/andrei/work/t7/splited/'
-	num_epochs = 50
+	num_epochs = 30
 	batch_size = 32
 	num_workers = 8	
 
