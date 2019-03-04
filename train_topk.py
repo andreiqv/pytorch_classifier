@@ -63,14 +63,15 @@ print('valid_num_batch:', num_batch['valid'])
 #	print(i, y) # image label
 
 
-def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
+def train_model(model, criterion, optimizer, scheduler, num_epochs=25,
+	model_name=''):
 
 	since = time.time()
 
 	best_model_wts = copy.deepcopy(model.state_dict())
 	best_acc = 0.0
 
-	fp = open('_out.txt', 'wt')
+	fp = open('_out_{}.txt'.format(model_name), 'wt')
 	fp.write('epoch,valid_acc\n')
 
 	acc1_by_epoch = {'train':[], 'valid':[]}
@@ -190,9 +191,10 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
 #model_ft = models.resnet18(pretrained=True)
 #model_ft = models.resnet50(pretrained=True)
-model_ft = models.resnet101(pretrained=True)
+#model_ft = models.resnet101(pretrained=True), model_name = 'resnet101'
 #model_ft = models.resnet152(pretrained=True)
 #model_ft = models.alexnet(pretrained=True)
+model_ft = models.squeezenet1_0(pretrained=True), model_name = 'squeezenet1_0'
 
 
 #model_ft = models.inception_v3(pretrained=True)
@@ -216,7 +218,7 @@ optimizer_ft = optim.Adagrad(model_ft.parameters(), lr=0.0005)
 exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 
 model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
-	num_epochs=settings.num_epochs)	
+	num_epochs=settings.num_epochs, model_name=model_name)	
 
 # save model
 
