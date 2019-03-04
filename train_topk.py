@@ -202,7 +202,7 @@ model_ft = models.densenet161(pretrained=True); model_name = 'densenet161'
 #model_ft = models.inception_v3(pretrained=True)
 #model_ft.aux_logits=False
 
-print(model)
+print(model_ft)
 
 if model_name[:3] in {'res', 'inc'}:
 	num_ftrs = model_ft.fc.in_features
