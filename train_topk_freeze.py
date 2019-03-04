@@ -213,7 +213,7 @@ for child in model_ft.children():
 """
 
 num_frozen_layers = 5
-model_ft = '{}_frozen_{}'.format(model_ft, num_frozen_layers)
+model_name = '{}_frozen_{}'.format(model_name, num_frozen_layers)
 
 i = 0
 for name, child in model_ft.named_children():
