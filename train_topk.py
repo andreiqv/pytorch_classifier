@@ -199,7 +199,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25,
 #model_ft = models.densenet161(pretrained=True); model_name = 'densenet161'
 
 
-model_ft = models.resnet50(pretrained=False); model_name = 'resnet50_from0'
+model_ft = models.resnet101(pretrained=False); model_name = 'resnet101_from0'
 
 #model_ft = models.inception_v3(pretrained=True)
 #model_ft.aux_logits=False
