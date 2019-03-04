@@ -212,7 +212,7 @@ for child in model_ft.children():
 			param.requires_grad = False
 """
 
-num_frozen_layers = 5
+num_frozen_layers = 0
 model_name = '{}_frozen_{}'.format(model_name, num_frozen_layers)
 
 i = 0
