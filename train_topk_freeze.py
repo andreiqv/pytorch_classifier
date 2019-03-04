@@ -71,7 +71,7 @@ def train_model(model, criterion, optimizer, scheduler,
 	best_model_wts = copy.deepcopy(model.state_dict())
 	best_acc = 0.0
 
-	fp = open('_out.txt', 'wt')
+	fp = open('_out_{}.txt'.format(model_name), 'wt')
 	fp.write('epoch,valid_acc\n')
 
 	acc1_by_epoch = {'train':[], 'valid':[]}
