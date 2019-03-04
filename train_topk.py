@@ -229,9 +229,11 @@ model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
 
 # save model
 
-model_path = 'mymodel.pt'
-torch.save(model_ft.state_dict(), model_path)
+if False:
+	model_path = 'mymodel_{}.pt'.format(model_name)
+	torch.save(model_ft.state_dict(), model_path)
 
+print('model_name:', model_name)
 
 """
 ----------
