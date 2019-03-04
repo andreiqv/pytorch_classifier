@@ -191,10 +191,10 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25,
 
 #model_ft = models.resnet18(pretrained=True)
 #model_ft = models.resnet50(pretrained=True)
-#model_ft = models.resnet101(pretrained=True), model_name = 'resnet101'
+#model_ft = models.resnet101(pretrained=True); model_name = 'resnet101'
 #model_ft = models.resnet152(pretrained=True)
 #model_ft = models.alexnet(pretrained=True)
-model_ft = models.squeezenet1_0(pretrained=True), model_name = 'squeezenet1_0'
+model_ft = models.squeezenet1_0(pretrained=True); model_name = 'squeezenet1_0'
 
 
 #model_ft = models.inception_v3(pretrained=True)
