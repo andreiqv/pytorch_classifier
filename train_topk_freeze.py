@@ -188,10 +188,19 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
 
 
-#model_ft = models.resnet18(pretrained=True)
-model_ft = models.resnet50(pretrained=False)
-#model_ft = models.resnet152(pretrained=True)  # Epoch 14 [valid]: loss=0.9544, acc=0.7135, top1=0.7119, top6=0.9606
+#model_ft = models.resnet18(pretrained=True); model_name = 'resnet18'
+#model_ft = models.resnet34(pretrained=True); model_name = 'resnet34'
+#model_ft = models.resnet50(pretrained=True); model_name = 'resnet50'
+#model_ft = models.resnet101(pretrained=True); model_name = 'resnet101'
+#model_ft = models.resnet152(pretrained=True); model_name = 'resnet152'
+#model_ft = models.alexnet(pretrained=True); model_name = 'alexnet'
+#model_ft = models.squeezenet1_0(pretrained=True); model_name = 'squeezenet1_0'
+#model_ft = models.densenet161(pretrained=True); model_name = 'densenet161'
+
+
 #model_ft = models.inception_v3(pretrained=True)
+#model_ft.aux_logits=False
+
 
 """
 ct = 0
