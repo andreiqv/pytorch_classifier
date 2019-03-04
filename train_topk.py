@@ -190,19 +190,24 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25,
 
 
 #model_ft = models.resnet18(pretrained=True); model_name = 'resnet18'
-model_ft = models.resnet34(pretrained=True); model_name = 'resnet34'
+#model_ft = models.resnet34(pretrained=True); model_name = 'resnet34'
 #model_ft = models.resnet50(pretrained=True); model_name = 'resnet50'
 #model_ft = models.resnet101(pretrained=True); model_name = 'resnet101'
 #model_ft = models.resnet152(pretrained=True)
 #model_ft = models.alexnet(pretrained=True)
-#model_ft = models.squeezenet1_0(pretrained=True); model_name = 'squeezenet1_0'
+model_ft = models.squeezenet1_0(pretrained=True); model_name = 'squeezenet1_0'
 
 
 #model_ft = models.inception_v3(pretrained=True)
 #model_ft.aux_logits=False
 
-num_ftrs = model_ft.fc.in_features
-model_ft.fc = nn.Linear(num_ftrs, num_classes)
+if model_name[:3] is {'res', 'inc', 'den'}:
+	num_ftrs = model_ft.fc.in_features
+	model_ft.fc = nn.Linear(num_ftrs, num_classes)
+else:
+	num_ftrs = model_ft.classifier.in_features
+	model_ft.classifier = nn.Linear(num_ftrs, num_classes)
+
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model_ft = model_ft.to(device)
