@@ -63,7 +63,8 @@ print('valid_num_batch:', num_batch['valid'])
 #	print(i, y) # image label
 
 
-def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
+def train_model(model, criterion, optimizer, scheduler,
+	num_epochs=25, model_name=''):
 
 	since = time.time()
 
@@ -191,7 +192,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 #model_ft = models.resnet18(pretrained=True); model_name = 'resnet18'
 #model_ft = models.resnet34(pretrained=True); model_name = 'resnet34'
 #model_ft = models.resnet50(pretrained=True); model_name = 'resnet50'
-#model_ft = models.resnet101(pretrained=True); model_name = 'resnet101'
+model_ft = models.resnet101(pretrained=True); model_name = 'resnet101'
 #model_ft = models.resnet152(pretrained=True); model_name = 'resnet152'
 #model_ft = models.alexnet(pretrained=True); model_name = 'alexnet'
 #model_ft = models.squeezenet1_0(pretrained=True); model_name = 'squeezenet1_0'
@@ -211,9 +212,9 @@ for child in model_ft.children():
 			param.requires_grad = False
 """
 
-freeze = False
+num_frozen_layers = 5
+model_ft = model_ft + '_frozen_' + str(num_frozen_layers)
 
-num_frozen_layers = 0
 i = 0
 for name, child in model_ft.named_children():
 	print("{}: {}".format(i, name), end='')
@@ -256,12 +257,12 @@ optimizer_ft = optim.Adam(list(filter(
 exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 
 model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
-	num_epochs=settings.num_epochs)	
+	num_epochs=settings.num_epochs, model_name=model_name)
 
 # save model
 
-model_path = 'mymodel.pt'
-torch.save(model_ft.state_dict(), model_path)
+#model_path = 'mymodel.pt'
+#torch.save(model_ft.state_dict(), model_path)
 
 
 """
