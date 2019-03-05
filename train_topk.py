@@ -212,7 +212,7 @@ print(model_ft)
 if model_name[:3] in {'res', 'inc'}:
 	num_ftrs = model_ft.fc.in_features
 	model_ft.fc = nn.Linear(num_ftrs, num_classes)
-elif model_name[:3] in {'vgg'}:
+elif model_name[:3] in {'vgg','ale'}:
 	num_ftrs = model_ft.classifier[6].in_features
 	model_ft.classifier[6] = nn.Linear(num_ftrs, num_classes)
 else:
