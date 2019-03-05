@@ -207,8 +207,7 @@ model_ft = models.vgg19(pretrained=True); model_name = 'vgg19'
 #model_ft = models.inception_v3(pretrained=True)
 #model_ft.aux_logits=False
 
-
-#print(model_ft)
+print(model_ft)
 
 if model_name[:3] in {'res', 'inc', 'vgg'}:
 	num_ftrs = model_ft.fc.in_features
