@@ -210,7 +210,7 @@ model_ft = models.vgg19(pretrained=True); model_name = 'vgg19'
 
 #print(model_ft)
 
-if model_name[:3] in {'res', 'inc', 'squ'}:
+if model_name[:3] in {'res', 'inc', 'vgg'}:
 	num_ftrs = model_ft.fc.in_features
 	model_ft.fc = nn.Linear(num_ftrs, num_classes)
 else:
